@@ -34,11 +34,9 @@ class CommentForm extends Component {
   }
 
   handleSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
     this.toggleModal();
 
-    this.props.addComment(
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
@@ -73,6 +71,7 @@ class CommentForm extends Component {
                     name="rating"
                     className="form-control"
                     validators={{}}
+                    defaultValue="1"
                   >
                     <option value={1}>1</option>
                     <option value={2}>2</option>
@@ -149,7 +148,7 @@ function RenderDish({ dish }) {
   );
 }
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments, postComment, dishId }) {
   const cmnts = comments.map((comment) => {
     return (
       <div key={comment.id}>
@@ -169,7 +168,7 @@ function RenderComments({ comments, addComment, dishId }) {
     <div className="col-12 col-md-5 m-1">
       <h4>Comments</h4>
       {cmnts}
-      <CommentForm dishId={dishId} addComment={addComment} />
+      <CommentForm dishId={dishId} postComment={postComment} />
     </div>
   );
 }
@@ -210,7 +209,7 @@ const DishCard = (props) => {
           <RenderDish dish={props.dish} />
           <RenderComments
             comments={props.comments}
-            addComment={props.addComment}
+            postComment={props.postComment}
             dishId={props.dish.id}
           />
         </div>
