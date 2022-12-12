@@ -10,10 +10,18 @@ import {
 import { Loading } from "./LoadingComponent";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUri";
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
+const Fade = ({children, ...props}) => (
+    <CSSTransition {...props} timeout={1000} classNames = 'fade'>
+      {children}
+    </CSSTransition>
+)
 const RenderLeader = ({ item }) => {
   return (
+
     <div key={item.id} className="col-12 mt-5">
+      <Fade>
       <Media tag="li">
         <Media left middle>
           <Media object src={baseUrl + item.image} alt={item.name} />
@@ -24,6 +32,7 @@ const RenderLeader = ({ item }) => {
           <p>{item.description}</p>
         </Media>
       </Media>
+     </Fade>
     </div>
   );
 };
@@ -110,9 +119,11 @@ function About(props) {
           {props.leadersLoading ? <Loading /> : <div></div>}
           {props.leaders && props.leaders.length && (
             <Media list>
+              <TransitionGroup delay={100} classNames="fade">
               {props.leaders.map((leader) => {
                 return <RenderLeader item={leader} />;
               })}
+            </TransitionGroup>
             </Media>
           )}
         </div>

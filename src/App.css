@@ -39,7 +39,28 @@
     border-bottom: 1px ridge;
     min-height:400px;
 }
+.fade-enter {
+    opacity: 0.1;
+    transform: translateY(-50px);
+}
 
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1000ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0.1;
+    transform: translateY(50px);
+    transition: all 800ms ease-in;
+
+}
 .footer{
     background-color: #D1C4E9;
     margin:0px auto;
