@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUri";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
@@ -71,7 +72,7 @@ class CommentForm extends Component {
                     name="rating"
                     className="form-control"
                     validators={{}}
-                    defaultValue="1"
+                    defaultValue="5"
                   >
                     <option value={1}>1</option>
                     <option value={2}>2</option>

@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUri";
+import { FadeTransform } from "react-animation-components";
 
 function RenderCard({ item, isLoading, errMess }) {
   if (isLoading) {
@@ -49,7 +50,11 @@ const Home = (props) => {
           />
         </div>
         <div className="col-12 col-md m-1">
-          <RenderCard item={props.leader} />
+          <RenderCard
+            item={props.leader}
+            isLoading={props.leadersLoading}
+            errMess={props.leadersErrMess}
+          />
         </div>
       </div>
     </div>
